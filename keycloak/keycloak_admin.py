@@ -47,7 +47,12 @@ from .urls_patterns import URL_ADMIN_SERVER_INFO, URL_ADMIN_CLIENT_AUTHZ_RESOURC
     URL_ADMIN_REALM_ROLES_MEMBERS, URL_ADMIN_CLIENT_PROTOCOL_MAPPER, URL_ADMIN_CLIENT_SCOPES_MAPPERS, \
     URL_ADMIN_FLOWS_EXECUTIONS_EXEUCUTION, URL_ADMIN_FLOWS_EXECUTIONS_FLOW, URL_ADMIN_FLOWS_COPY, \
     URL_ADMIN_FLOWS_ALIAS, URL_ADMIN_CLIENT_SERVICE_ACCOUNT_USER, URL_ADMIN_AUTHENTICATOR_CONFIG, \
+<<<<<<< HEAD
     URL_ADMIN_CLIENT_ROLES_COMPOSITE_CLIENT_ROLE, URL_ADMIN_CLIENT_ALL_SESSIONS, URL_ADMIN_EVENTS,URL_ADMIN_DELETE_USER_ROLE
+=======
+    URL_ADMIN_CLIENT_ROLES_COMPOSITE_CLIENT_ROLE, URL_ADMIN_CLIENT_ALL_SESSIONS, URL_ADMIN_EVENTS,\
+    URL_ADMIN_DELETE_USER_ROLE
+>>>>>>> d7d661a38c7a6bf5daaea513616f4f9936460bef
 
 
 class KeycloakAdmin:
@@ -1880,7 +1885,6 @@ class KeycloakAdmin:
         return raise_error_from_response(data_raw, KeycloakGetError)
 
 
-    #bostonK
     def delete_user_realm_role(self, user_id, payload):
         """
         Delete realm-level role mappings
@@ -1890,4 +1894,4 @@ class KeycloakAdmin:
         params_path = {"realm-name": self.realm_name, "id": str(user_id) }
         data_raw = self.connection.raw_delete(URL_ADMIN_DELETE_USER_ROLE.format(**params_path),
                                               data=json.dumps(payload))
-        return raise_error_from_response(data_raw, KeycloakGetError, expected_code=204)
+        return raise_error_from_response(data_raw, KeycloakGetError, expected_codes=[204])
